@@ -121,7 +121,7 @@ resource "aws_security_group" "internal" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "${aws_security_group.front-cantainer.id}",
+                "${aws_security_group.front-container.id}",
             ]
             self             = false
             to_port          = 80
