@@ -37,31 +37,13 @@ resource "aws_route_table" "sbcntr-route-ingress" {
     vpc_id           = "${aws_vpc.vpc.id}"
 }
 
-resource "aws_route" "sbcntr-route-app" {
-    destination_cidr_block = "10.0.0.0/16"
-    gateway_id             = "local"
-    route_table_id         = "${aws_route_table.sbcntr-route-app.id}"
-}
-
-resource "aws_route" "sbcntr-route-db" {
-    destination_cidr_block = "10.0.0.0/16"
-    gateway_id             = "local"
-    route_table_id         = "${aws_route_table.sbcntr-route-db.id}"
-}
-
-resource "aws_route" "sbcntr-route-ingress" {
-    destination_cidr_block = "10.0.0.0/16"
-    gateway_id             = "local"
-    route_table_id         = "${aws_route_table.sbcntr-route-ingress.id}"
-}
-
 resource "aws_route_table_association" "sbcntr-subnet-public-ingress-1a" {
-    route_table_id = "${aws_route.sbcntr-route-ingress.id}"
+    route_table_id = "${aws_route_table.sbcntr-route-ingress.id}"
     subnet_id      = "${aws_subnet.sbcntr-subnet-public-ingress-1a.id}"
 }
 
 resource "aws_route_table_association" "sbcntr-subnet-public-ingress-1c" {
-    route_table_id = "${aws_route.sbcntr-route-ingress.id}"
+    route_table_id = "${aws_route_table.sbcntr-route-ingress.id}"
     subnet_id      = "${aws_subnet.sbcntr-subnet-public-ingress-1c.id}"
 }
 
@@ -86,11 +68,11 @@ resource "aws_route_table_association" "sbcntr-subnet-private-db-1c" {
 }
 
 resource "aws_route_table_association" "sbcntr-subnet-public-management-1a" {
-    route_table_id = "${aws_route.sbcntr-route-ingress.id}"
+    route_table_id = "${aws_route_table.sbcntr-route-ingress.id}"
     subnet_id      = "${aws_subnet.sbcntr-subnet-public-management-1a.id}"
 }
 
 resource "aws_route_table_association" "sbcntr-subnet-public-management-1c" {
-    route_table_id = "${aws_route.sbcntr-route-ingress.id}"
+    route_table_id = "${aws_route_table.sbcntr-route-ingress.id}"
     subnet_id      = "${aws_subnet.sbcntr-subnet-public-management-1c.id}"
 }
