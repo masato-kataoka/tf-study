@@ -135,8 +135,6 @@ resource "aws_subnet" "sbcntr-subnet-public-management-1a" {
         "Type" = "Public"
     }
     vpc_id                                         = "${aws_vpc.vpc.id}"
-
-    timeouts {}
 }
 
 resource "aws_subnet" "sbcntr-subnet-public-management-1c" {
