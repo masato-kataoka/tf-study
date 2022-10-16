@@ -50,7 +50,7 @@ resource "aws_security_group" "ingress" {
     tags_all    = {
         "Name" = "sbcntr-sg-ingress"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "front-container" {
@@ -79,7 +79,7 @@ resource "aws_security_group" "front-container" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-00ac7044aea99bff0",
+                "${aws_security_group.ingress.id}",
             ]
             self             = false
             to_port          = 80
@@ -92,7 +92,7 @@ resource "aws_security_group" "front-container" {
     tags_all    = {
         "Name" = "sbcntr-sg-front-container"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "internal" {
@@ -121,7 +121,7 @@ resource "aws_security_group" "internal" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-0193a01a708a24edb",
+                "${aws_security_group.front-cantainer.id}",
             ]
             self             = false
             to_port          = 80
@@ -134,7 +134,7 @@ resource "aws_security_group" "internal" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-086659893685d47a0",
+                "${aws_security_group.management.id}",
             ]
             self             = false
             to_port          = 80
@@ -147,7 +147,7 @@ resource "aws_security_group" "internal" {
     tags_all    = {
         "Name" = "sbcntr-sg-internal"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "management" {
@@ -175,7 +175,7 @@ resource "aws_security_group" "management" {
     tags_all    = {
         "Name" = "sbcntr-sg-management"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "container" {
@@ -204,7 +204,7 @@ resource "aws_security_group" "container" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-065f7225d7ddcae84",
+                "${aws_security_group.internal.id}",
             ]
             self             = false
             to_port          = 80
@@ -217,7 +217,7 @@ resource "aws_security_group" "container" {
     tags_all    = {
         "Name" = "sbcntr-sg-container"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "default" {
@@ -253,7 +253,7 @@ resource "aws_security_group" "default" {
     name        = "default"
     tags        = {}
     tags_all    = {}
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "egress" {
@@ -282,7 +282,7 @@ resource "aws_security_group" "egress" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-0964fab1d4fca500e",
+                "${aws_security_group.container.id}",
             ]
             self             = false
             to_port          = 443
@@ -295,7 +295,7 @@ resource "aws_security_group" "egress" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-0193a01a708a24edb",
+                "${aws_security_group.front-cantainer.id}",
             ]
             self             = false
             to_port          = 443
@@ -308,7 +308,7 @@ resource "aws_security_group" "egress" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-086659893685d47a0",
+                "${aws_security_group.management.id}",
             ]
             self             = false
             to_port          = 443
@@ -321,7 +321,7 @@ resource "aws_security_group" "egress" {
     tags_all    = {
         "Name" = "sbcntr-sg-vpce"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "database" {
@@ -350,7 +350,7 @@ resource "aws_security_group" "database" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-0964fab1d4fca500e",
+                "${aws_security_group.container.id}",
             ]
             self             = false
             to_port          = 3306
@@ -363,7 +363,7 @@ resource "aws_security_group" "database" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-0193a01a708a24edb",
+                "${aws_security_group.front-cantainer.id}",
             ]
             self             = false
             to_port          = 3306
@@ -376,7 +376,7 @@ resource "aws_security_group" "database" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "sg-086659893685d47a0",
+                "${aws_security_group.management.id}",
             ]
             self             = false
             to_port          = 3306
@@ -389,5 +389,5 @@ resource "aws_security_group" "database" {
     tags_all    = {
         "Name" = "sbcntr-sg-db"
     }
-    vpc_id      = "vpc-0fde87b32cacadbc4"
+    vpc_id      = "${aws_vpc.vpc.id}"
 }
