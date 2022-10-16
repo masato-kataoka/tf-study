@@ -15,7 +15,7 @@ resource "aws_subnet" "sbcntr-subnet-public-ingress-1a" {
         "Name" = "sbcntr-subnet-public-ingress-1a"
         "Type" = "Public"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-public-ingress-1c" {
@@ -35,7 +35,7 @@ resource "aws_subnet" "sbcntr-subnet-public-ingress-1c" {
         "Name" = "sbcntr-subnet-public-ingress-1c"
         "Type" = "Public"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-container-1a" {
@@ -55,7 +55,7 @@ resource "aws_subnet" "sbcntr-subnet-private-container-1a" {
         "Name" = "sbcntr-subnet-private-container-1a"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-container-1c" {
@@ -75,7 +75,7 @@ resource "aws_subnet" "sbcntr-subnet-private-container-1c" {
         "Name" = "sbcntr-subnet-private-container-1c"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-db-1a" {
@@ -94,7 +94,7 @@ resource "aws_subnet" "sbcntr-subnet-private-db-1a" {
         "Name" = "sbcntr-subnet-private-db-1a"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-db-1c" {
@@ -114,7 +114,7 @@ resource "aws_subnet" "sbcntr-subnet-private-db-1c" {
         "Name" = "sbcntr-subnet-private-db-1c"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-public-management-1a" {
@@ -134,7 +134,7 @@ resource "aws_subnet" "sbcntr-subnet-public-management-1a" {
         "Name" = "sbcntr-subnet-public-management-1a"
         "Type" = "Public"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 
     timeouts {}
 }
@@ -156,7 +156,7 @@ resource "aws_subnet" "sbcntr-subnet-public-management-1c" {
         "Name" = "sbcntr-subnet-public-management-1c"
         "Type" = "Public"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-egress-1a" {
@@ -176,7 +176,7 @@ resource "aws_subnet" "sbcntr-subnet-private-egress-1a" {
         "Name" = "sbcntr-subnet-private-egress-1a"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_subnet" "sbcntr-subnet-private-egress-1c" {
@@ -196,6 +196,6 @@ resource "aws_subnet" "sbcntr-subnet-private-egress-1c" {
         "Name" = "sbcntr-subnet-private-egress-1c"
         "Type" = "Isolated"
     }
-    vpc_id                                         = "vpc-0fde87b32cacadbc4"
+    vpc_id                                         = "${aws_vpc.vpc.id}"
 }
 
