@@ -136,9 +136,6 @@ resource "aws_security_group" "internal" {
             security_groups  = [
                 "${aws_security_group.management.id}",
             ]
-
-
-            
             self             = false
             to_port          = 80
         },
