@@ -136,6 +136,9 @@ resource "aws_security_group" "internal" {
             security_groups  = [
                 "${aws_security_group.management.id}",
             ]
+
+
+            
             self             = false
             to_port          = 80
         },
@@ -295,7 +298,7 @@ resource "aws_security_group" "egress" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "${aws_security_group.front-cantainer.id}",
+                "${aws_security_group.front-container.id}",
             ]
             self             = false
             to_port          = 443
@@ -363,7 +366,7 @@ resource "aws_security_group" "database" {
             prefix_list_ids  = []
             protocol         = "tcp"
             security_groups  = [
-                "${aws_security_group.front-cantainer.id}",
+                "${aws_security_group.front-container.id}",
             ]
             self             = false
             to_port          = 3306
